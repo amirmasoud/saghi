@@ -15,17 +15,17 @@ return new class extends Migration
     {
         Schema::create('pages', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('slug');
-            $table->text('content')->nullable();
+            $table->text('title');
+            $table->text('slug');
+            $table->longText('strip_content')->nullable();
+            $table->longText('plain_content')->nullable();
+            $table->longText('html_content')->nullable();
             $table->integer('order')->default(0);
             $table->foreignIdFor(Book::class);
-            $table->foreignIdFor(Page::class);
+            $table->foreignIdFor(Page::class)->nullable();
             $table->softDeletes();
             $table->timestamp('published_at');
             $table->timestamps();
-
-            $table->unique('slug');
         });
     }
 

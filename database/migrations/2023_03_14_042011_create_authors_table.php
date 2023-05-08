@@ -33,8 +33,8 @@ return new class extends Migration
             $table->timestamp('published_at');
             $table->timestamps();
 
-            $table->unique('slug');
-            $table->index('name', 'nickname');
+            // $table->unique('slug');
+            // $table->index('name', 'nickname');
         });
     }
 
