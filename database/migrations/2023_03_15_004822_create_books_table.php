@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Author;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -17,11 +18,10 @@ return new class extends Migration
             $table->string('slug');
             $table->text('description')->nullable();
             $table->integer('order')->default(0);
+            $table->foreignIdFor(Author::class);
             $table->softDeletes();
             $table->timestamp('published_at');
             $table->timestamps();
-
-            $table->unique('slug');
         });
     }
 
