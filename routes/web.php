@@ -30,18 +30,19 @@ Route::get('/{author:slug}/{book:slug}', function (\App\Models\Author $author, \
     return view('book', [
         'author' => $author,
         'book' => $book,
+        'books' => $author->books,
         'pages' => $book->pages,
     ]);
 });
 
-Route::get('/{author:slug}/{book:slug}/{page}', function (\App\Models\Author $author, \App\Models\Book $book, $page) {
-    $content = $book->pages()->where('slug', $page)->first();
+Route::get('/{author:slug}/{book:slug}/{page:id}', function (\App\Models\Author $author, \App\Models\Book $book, \App\Models\Page $page) {
     return view('page', [
         'author' => $author,
         'book' => $book,
+        'books' => $author->books,
         'pages' => $book->pages,
-        'content' => $content,
-        'next' => $book->pages()->where('id', '>', $content->id)->first(),
-        'previous' => $book->pages()->where('id', '<', $content->id)->orderBy('order', 'desc')->first(),
+        'content' => $page,
+        'next' => $book->pages()->where('id', '>', $page->id)->first(),
+        'previous' => $book->pages()->where('id', '<', $page->id)->orderBy('order', 'desc')->first(),
     ]);
 })->where('page', '(.*)');

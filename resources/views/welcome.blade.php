@@ -2,7 +2,7 @@
     <head>
         @livewireStyles
     </head>
-    <body>
+    <body dir="rtl">
         <ul>
             @foreach($authors as $author)
                 <li><a href="{{ $author->slug }}">{{ $author->name }}</a></li>
