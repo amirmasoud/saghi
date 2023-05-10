@@ -19,8 +19,8 @@
                 </a>
                 @endforeach
             </div>
-
         </div>
+        @include('parts.socials')
         @livewireScripts
     </body>
 </html>
