@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -58,5 +59,10 @@ class User extends Authenticatable implements HasMedia
             ->addMediaConversion('preview')
             ->fit(Fit::Contain, 300, 300)
             ->nonQueued();
+    }
+
+    public function books(): BelongsToMany
+    {
+        return $this->belongsToMany(Book::class);
     }
 }

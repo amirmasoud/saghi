@@ -6,8 +6,10 @@ use App\Filament\Resources\BookResource\Pages;
 use App\Filament\Resources\BookResource\RelationManagers;
 use App\Models\Book;
 use Filament\Forms;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Form;
+use Filament\Infolists\Components\Card;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -28,6 +30,7 @@ class BookResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('title')->required(),
                 SpatieMediaLibraryFileUpload::make('cover'),
+                RichEditor::make('description')->nullable(),
             ]);
     }
 
