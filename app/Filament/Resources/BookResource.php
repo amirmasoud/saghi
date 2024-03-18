@@ -6,6 +6,7 @@ use App\Filament\Resources\BookResource\Pages;
 use App\Filament\Resources\BookResource\RelationManagers;
 use App\Models\Book;
 use Filament\Forms;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -26,6 +27,7 @@ class BookResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('title')->required(),
+                SpatieMediaLibraryFileUpload::make('cover'),
             ]);
     }
 
