@@ -6,7 +6,9 @@ use App\Filament\Resources\BookResource\Pages;
 use App\Filament\Resources\BookResource\RelationManagers;
 use App\Models\Book;
 use Filament\Forms;
+use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Form;
 use Filament\Infolists\Components\Card;
@@ -30,7 +32,19 @@ class BookResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('title')->required(),
                 SpatieMediaLibraryFileUpload::make('cover'),
-                RichEditor::make('description')->nullable(),
+                MarkdownEditor::make('description')->nullable()->columnSpanFull(),
+                Select::make('users')
+                    ->multiple()
+                    ->relationship('users', 'name')
+                    ->preload(),
+                Select::make('categories')
+                    ->multiple()
+                    ->relationship('categories', 'name')
+                    ->preload(),
+                Select::make('tags')
+                    ->multiple()
+                    ->relationship('tags', 'name')
+                    ->preload(),
             ]);
     }
 
