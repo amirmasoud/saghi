@@ -13,6 +13,8 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Permission\Traits\HasRoles;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 class User extends Authenticatable implements HasMedia
 {
@@ -21,6 +23,7 @@ class User extends Authenticatable implements HasMedia
     use Notifiable;
     use HasRoles;
     use InteractsWithMedia;
+    use HasSlug;
 
     /**
      * The attributes that are mass assignable.
@@ -64,5 +67,16 @@ class User extends Authenticatable implements HasMedia
     public function books(): BelongsToMany
     {
         return $this->belongsToMany(Book::class);
+    }
+
+    /**
+     * Get the options for generating the slug.
+     */
+    public function getSlugOptions() : SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('name')
+            ->saveSlugsTo('username')
+            ->doNotGenerateSlugsOnUpdate();
     }
 }
