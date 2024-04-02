@@ -30,6 +30,7 @@ class AdminPanelProvider extends PanelProvider
             ->login()
             ->colors([
                 'primary' => Color::Indigo,
+                'gray' => Color::Zinc,
             ])
             ->configure([
                 'dir' => 'rtl'
