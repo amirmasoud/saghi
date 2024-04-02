@@ -18,6 +18,7 @@ class Section extends Model
     protected $fillable = [
         'title',
         'content',
+        'book_id',
     ];
 
     public function book(): BelongsTo

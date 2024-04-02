@@ -24,6 +24,13 @@ class CommentResource extends Resource
         return $form
             ->schema([
                 Forms\Components\Textarea::make('content')->required(),
+                Forms\Components\Select::make('book_id')
+                    ->required()
+                    ->searchable()
+                    ->preload()
+                    ->editOptionForm(BookResource::getSchema())
+                    ->createOptionForm(BookResource::getSchema())
+                    ->relationship('book', 'title')
             ]);
     }
 

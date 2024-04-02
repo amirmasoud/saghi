@@ -29,23 +29,7 @@ class BookResource extends Resource
     public static function form(Form $form): Form
     {
         return $form
-            ->schema([
-                Forms\Components\TextInput::make('title')->required(),
-                SpatieMediaLibraryFileUpload::make('cover'),
-                MarkdownEditor::make('description')->nullable()->columnSpanFull(),
-                Select::make('users')
-                    ->multiple()
-                    ->relationship('users', 'name')
-                    ->preload(),
-                Select::make('categories')
-                    ->multiple()
-                    ->relationship('categories', 'name')
-                    ->preload(),
-                Select::make('tags')
-                    ->multiple()
-                    ->relationship('tags', 'name')
-                    ->preload(),
-            ]);
+            ->schema(self::getSchema());
     }
 
     public static function table(Table $table): Table
@@ -80,6 +64,39 @@ class BookResource extends Resource
             'index' => Pages\ListBooks::route('/'),
             'create' => Pages\CreateBook::route('/create'),
             'edit' => Pages\EditBook::route('/{record}/edit'),
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public static function getSchema(): array
+    {
+        return [
+            Forms\Components\TextInput::make('title')->required(),
+            SpatieMediaLibraryFileUpload::make('cover'),
+            MarkdownEditor::make('description')->nullable()->columnSpanFull(),
+            Select::make('users')
+                ->required()
+                ->multiple()
+                // ->editOptionForm(UserResource::getSchema())
+                ->createOptionForm(UserResource::getSchema())
+                ->relationship('users', 'name')
+                ->preload(),
+            Select::make('categories')
+                ->required()
+                ->multiple()
+                // ->editOptionForm(CategoryResource::getSchema())
+                ->createOptionForm(CategoryResource::getSchema())
+                ->relationship('categories', 'name')
+                ->preload(),
+            Select::make('tags')
+                ->required()
+                ->multiple()
+                // ->editOptionForm(TagResource::getSchema())
+                ->createOptionForm(TagResource::getSchema())
+                ->relationship('tags', 'name')
+                ->preload(),
         ];
     }
 }

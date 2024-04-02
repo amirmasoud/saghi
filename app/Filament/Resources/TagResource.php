@@ -23,14 +23,7 @@ class TagResource extends Resource
     public static function form(Form $form): Form
     {
         return $form
-            ->schema([
-                TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
-                TextInput::make('slug')
-                    ->required()
-                    ->maxLength(255),
-            ]);
+            ->schema(self::getSchema());
     }
 
     public static function table(Table $table): Table
@@ -66,6 +59,18 @@ class TagResource extends Resource
             'index' => Pages\ListTags::route('/'),
             'create' => Pages\CreateTag::route('/create'),
             'edit' => Pages\EditTag::route('/{record}/edit'),
+        ];
+    }
+
+    public static function getSchema(): array
+    {
+        return [
+            TextInput::make('name')
+                ->required()
+                ->maxLength(255),
+            TextInput::make('slug')
+                ->required()
+                ->maxLength(255),
         ];
     }
 }

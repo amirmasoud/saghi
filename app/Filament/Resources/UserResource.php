@@ -24,24 +24,7 @@ class UserResource extends Resource
 
     public static function form(Form $form): Form
     {
-        return $form
-            ->schema([
-                Forms\Components\TextInput::make('name')->required(),
-                Forms\Components\TextInput::make('email')->email()->required(),
-                Forms\Components\TextInput::make('username')->unique()->required(),
-                Forms\Components\TextInput::make('password')->password()->revealable()->nullable(),
-                SpatieMediaLibraryFileUpload::make('avatar'),
-                Forms\Components\DatePicker::make('email_verified_at')->nullable(),
-                Forms\Components\DatePicker::make('published_at')->nullable(),
-                Forms\Components\TextInput::make('birth_year_in_hijri')->minValue(0)->integer()->nullable(),
-                Forms\Components\DatePicker::make('birth_year_validated_at')->nullable(),
-                Forms\Components\TextInput::make('birth_place')->nullable(),
-                Forms\Components\TextInput::make('birth_place_location')->nullable(),
-                Forms\Components\TextInput::make('death_year_in_hijri')->minValue(0)->integer()->nullable(),
-                Forms\Components\DatePicker::make('death_year_validated_at')->nullable(),
-                Forms\Components\TextInput::make('death_place')->nullable(),
-                Forms\Components\TextInput::make('death_place_location')->nullable(),
-            ]);
+        return $form->schema(static::getSchema());
     }
 
     public static function table(Table $table): Table
@@ -78,6 +61,32 @@ class UserResource extends Resource
             'index' => Pages\ListUsers::route('/'),
             'create' => Pages\CreateUser::route('/create'),
             'edit' => Pages\EditUser::route('/{record}/edit'),
+        ];
+    }
+
+    public static function getSchema(): array
+    {
+        return [
+            Forms\Components\TextInput::make('name')->required()->maxLength(120),
+            Forms\Components\TextInput::make('email')->email()->required(),
+            Forms\Components\TextInput::make('username')
+                ->unique()
+                ->required()
+                ->prefix('@'),
+            Forms\Components\Toggle::make('is_published')->default(false),
+            Forms\Components\TextInput::make('password')->password()->revealable()->nullable(),
+            SpatieMediaLibraryFileUpload::make('avatar'),
+            Forms\Components\MarkdownEditor::make('bio')->nullable(),
+            Forms\Components\DatePicker::make('email_verified_at')->nullable()->native(false),
+            Forms\Components\DatePicker::make('published_at')->nullable()->native(false),
+            Forms\Components\TextInput::make('birth_year_in_hijri')->minValue(0)->integer()->nullable(),
+            Forms\Components\DatePicker::make('birth_year_validated_at')->nullable()->native(false),
+            Forms\Components\TextInput::make('birth_place')->nullable(),
+            Forms\Components\TextInput::make('birth_place_location')->nullable(),
+            Forms\Components\TextInput::make('death_year_in_hijri')->minValue(0)->integer()->nullable(),
+            Forms\Components\DatePicker::make('death_year_validated_at')->nullable()->native(false),
+            Forms\Components\TextInput::make('death_place')->nullable(),
+            Forms\Components\TextInput::make('death_place_location')->nullable(),
         ];
     }
 }

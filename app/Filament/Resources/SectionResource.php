@@ -25,7 +25,21 @@ class SectionResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('title'),
+                Forms\Components\TextInput::make('title')
+                    ->required(),
+                Forms\Components\MarkdownEditor::make('content')
+                    ->required()
+                    ->fileAttachmentsDisk(config('filesystems.default'))
+                    ->fileAttachmentsDirectory('sections/attachments')
+                    ->fileAttachmentsVisibility('private')
+                    ->columnSpanFull(),
+                Forms\Components\Select::make('book_id')
+                    ->required()
+                    ->searchable()
+                    ->preload()
+                    ->editOptionForm(BookResource::getSchema())
+                    ->createOptionForm(BookResource::getSchema())
+                    ->relationship('book', 'title'),
             ]);
     }
 

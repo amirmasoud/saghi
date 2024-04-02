@@ -17,9 +17,10 @@ class Comment extends Model
      */
     protected $fillable = [
         'content',
+        'book_id',
     ];
 
-    public function books(): BelongsTo
+    public function book(): BelongsTo
     {
         return $this->belongsTo(Book::class);
     }

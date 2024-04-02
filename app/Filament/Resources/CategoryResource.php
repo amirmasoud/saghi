@@ -25,14 +25,7 @@ class CategoryResource extends Resource
     public static function form(Form $form): Form
     {
         return $form
-            ->schema([
-                TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
-                TextInput::make('slug')
-                    ->required()
-                    ->maxLength(255),
-            ]);
+            ->schema(self::getSchema());
     }
 
     public static function table(Table $table): Table
@@ -68,6 +61,21 @@ class CategoryResource extends Resource
             'index' => Pages\ListCategories::route('/'),
             'create' => Pages\CreateCategory::route('/create'),
             'edit' => Pages\EditCategory::route('/{record}/edit'),
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public static function getSchema(): array
+    {
+        return [
+            TextInput::make('name')
+                ->required()
+                ->maxLength(255),
+            TextInput::make('slug')
+                ->required()
+                ->maxLength(255),
         ];
     }
 }
