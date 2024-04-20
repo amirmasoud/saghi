@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Imports\BookImporter;
 use App\Filament\Resources\BookResource\Pages;
 use App\Models\Book;
 use Filament\Forms;
@@ -11,6 +12,7 @@ use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Actions\ImportAction;
 use Filament\Tables\Table;
 
 class BookResource extends Resource
@@ -19,11 +21,11 @@ class BookResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-book-open';
 
-    protected static ?string $navigationGroup = 'محتوا';
+    protected static ?string $navigationGroup = 'Content';
 
-    protected static ?string $label = 'کتاب';
+    protected static ?string $label = 'Book';
 
-    protected static ?string $pluralModelLabel = 'کتاب‌ها';
+    protected static ?string $pluralModelLabel = 'Books';
 
     protected static bool $hasTitleCaseModelLabel = false;
 

@@ -42,7 +42,9 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
-                //
+                \App\Filament\Resources\CommentResource\Widgets\CommentOverview::class,
+                \App\Filament\Resources\BookResource\Widgets\BookOverview::class,
+                \App\Filament\Resources\UserResource\Widgets\UserOverview::class,
             ])
             ->middleware([
                 EncryptCookies::class,
