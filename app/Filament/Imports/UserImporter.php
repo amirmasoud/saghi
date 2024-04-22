@@ -18,37 +18,37 @@ class UserImporter extends Importer
                 ->requiredMapping()
                 ->rules(['required']),
             ImportColumn::make('slug'),
-            ImportColumn::make('nickname'),
-            ImportColumn::make('username')
-                ->requiredMapping()
-                ->rules(['required']),
-            ImportColumn::make('is_published')
-                ->rules(['date']),
-            ImportColumn::make('bio'),
+            // ImportColumn::make('nickname'),
+            // ImportColumn::make('username')
+            //     ->requiredMapping()
+            //     ->rules(['required']),
+            // ImportColumn::make('is_published')
+            //     ->rules(['date']),
+            // ImportColumn::make('bio'),
             ImportColumn::make('email')
                 ->requiredMapping()
                 ->rules(['required', 'email']),
-            ImportColumn::make('email_verified_at')
-                ->rules(['email', 'date']),
-            ImportColumn::make('published_at')
-                ->rules(['date']),
-            ImportColumn::make('birth_year_in_hijri')
-                ->numeric()
-                ->rules(['integer']),
-            ImportColumn::make('birth_year_validated_at')
-                ->boolean()
-                ->rules(['boolean']),
-            ImportColumn::make('birth_place'),
-            ImportColumn::make('birth_place_location'),
-            ImportColumn::make('death_year_in_hijri')
-                ->numeric()
-                ->rules(['integer']),
-            ImportColumn::make('death_year_validated_at')
-                ->numeric()
-                ->rules(['integer']),
-            ImportColumn::make('death_place'),
-            ImportColumn::make('death_place_location'),
-            ImportColumn::make('order_column'),
+            // ImportColumn::make('email_verified_at')
+            //     ->rules(['email', 'date']),
+            // ImportColumn::make('published_at')
+            //     ->rules(['date']),
+            // ImportColumn::make('birth_year_in_hijri')
+            //     ->numeric()
+            //     ->rules(['integer']),
+            // ImportColumn::make('birth_year_validated_at')
+            //     ->boolean()
+            //     ->rules(['boolean']),
+            // ImportColumn::make('birth_place'),
+            // ImportColumn::make('birth_place_location'),
+            // ImportColumn::make('death_year_in_hijri')
+            //     ->numeric()
+            //     ->rules(['integer']),
+            // ImportColumn::make('death_year_validated_at')
+            //     ->numeric()
+            //     ->rules(['integer']),
+            // ImportColumn::make('death_place'),
+            // ImportColumn::make('death_place_location'),
+            // ImportColumn::make('order_column'),
             ImportColumn::make('password')
                 ->requiredMapping()
                 ->rules(['required']),
