@@ -20,8 +20,9 @@ class DatabaseSeeder extends Seeder
             'password' => 'password',
         ]);
 
-        Role::create([
-            'name' => 'admin',
-        ]);
+        Role::create(['name' => 'admin']);
+        Role::create(['name' => 'publisher']);
+        Role::create(['name' => 'author']);
+        Role::create(['name' => 'reader']);
     }
 }
