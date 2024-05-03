@@ -17,9 +17,9 @@ class BookImporter extends Importer
             ImportColumn::make('title')
                 ->requiredMapping()
                 ->rules(['required']),
-            ImportColumn::make('slug')
-                ->requiredMapping()
-                ->rules(['required']),
+            // ImportColumn::make('slug')
+            //     ->requiredMapping()
+            //     ->rules(['required']),
             ImportColumn::make('description'),
         ];
     }

@@ -17,7 +17,11 @@ class UserImporter extends Importer
             ImportColumn::make('name')
                 ->requiredMapping()
                 ->rules(['required']),
+<<<<<<< HEAD
             ImportColumn::make('slug'),
+=======
+            // ImportColumn::make('slug'),
+>>>>>>> a44feaf (wip)
             // ImportColumn::make('nickname'),
             // ImportColumn::make('username')
             //     ->requiredMapping()
