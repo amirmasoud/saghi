@@ -29,7 +29,7 @@ class RoleResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('name')->required(),
                 Forms\Components\CheckboxList::make('permissions')
-                    ->relationship('permissions', 'name')
+                    ->relationship('permissions', 'name', fn ($query) => $query->orderBy('id'))
                     ->searchable()
                     ->bulkToggleable()
             ]);
