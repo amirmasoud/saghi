@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class RoleSeeder extends Seeder
@@ -12,9 +13,47 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
-        Role::create(['name' => 'admin']);
-        Role::create(['name' => 'publisher']);
-        Role::create(['name' => 'author']);
-        Role::create(['name' => 'reader']);
+        $role = Role::create(['name' => 'admin']);
+        $role->givePermissionTo(Permission::all());
+
+        $role = Role::create(['name' => 'publisher']);
+        $role->givePermissionTo([
+            'create comment',
+            'read comment',
+            'create book',
+            'read book',
+            'update book',
+            'delete book',
+            'create section',
+            'read section',
+            'update section',
+            'delete section',
+            'create user',
+            'read user',
+            'update user',
+            'delete user',
+        ]);
+
+        $role = Role::create(['name' => 'author']);
+        $role->givePermissionTo([
+            'create comment',
+            'read comment',
+            'create book',
+            'read book',
+            'update book',
+            'delete book',
+            'create section',
+            'read section',
+            'update section',
+            'delete section',
+        ]);
+
+        $role = Role::create(['name' => 'reader']);
+        $role->givePermissionTo([
+            'create comment',
+            'read comment',
+            'read book',
+            'read section',
+        ]);
     }
 }

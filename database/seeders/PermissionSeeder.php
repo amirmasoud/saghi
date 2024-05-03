@@ -18,6 +18,11 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'update category']);
         Permission::create(['name' => 'delete category']);
 
+        Permission::create(['name' => 'create comment']);
+        Permission::create(['name' => 'read comment']);
+        Permission::create(['name' => 'update comment']);
+        Permission::create(['name' => 'delete comment']);
+
         Permission::create(['name' => 'create tag']);
         Permission::create(['name' => 'read tag']);
         Permission::create(['name' => 'update tag']);
