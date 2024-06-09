@@ -15,12 +15,14 @@
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^11.0",
         "laravel/tinker": "^v2.9",
+        "livewire/livewire": "^3.4",
         "spatie/eloquent-sortable": "^4.2",
         "spatie/laravel-medialibrary": "^11.4",
         "spatie/laravel-permission": "^6.4",
         "spatie/laravel-sluggable": "^3.6"
     },
     "require-dev": {
+        "barryvdh/laravel-ide-helper": "^3.0",
         "fakerphp/faker": "^1.11",
         "laravel/pint": "^v1.15",
         "mockery/mockery": "^1.6",
@@ -48,7 +50,9 @@
             "@php artisan filament:upgrade"
         ],
         "post-update-cmd": [
-            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force",
+            "@php artisan ide-helper:generate",
+            "@php artisan ide-helper:meta"
         ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
